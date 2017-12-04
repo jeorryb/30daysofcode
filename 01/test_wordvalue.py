@@ -3,7 +3,7 @@ import unittest
 from data import DICTIONARY, LETTER_SCORES
 from wordvalue import load_words, calc_word_value, max_word_value
 
-TEST_WORDS = ('bob', 'julian', 'pybites', 'quit', 'barbeque')
+TEST_WORDS = ['bob', 'julian', 'pybites', 'quit', 'barbeque']
 
 class TestWordValue(unittest.TestCase):
     
@@ -21,7 +21,7 @@ class TestWordValue(unittest.TestCase):
         self.assertEqual(calc_word_value('benzalphenylhydrazone'), 56)
 
     def test_max_word_value(self):
-        self.assertEqual(max_word_value(TEST_WORDS), 'barbeque')
+        self.assertEqual(max_word_value(wordlist=TEST_WORDS), 'barbeque')
         self.assertEqual(max_word_value(), 'benzalphenylhydrazone')
 
 if __name__ == "__main__":
