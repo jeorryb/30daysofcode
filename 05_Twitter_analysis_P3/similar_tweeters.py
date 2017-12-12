@@ -5,6 +5,7 @@ import usertweets
 from collections import Counter
 from nltk.tokenize import word_tokenize
 from nltk.corpus import stopwords
+from nltk.stem.porter import *
 
 
 
@@ -18,7 +19,10 @@ def similar_tweeters(user1, user2):
     u2tokens = [tokenize_tweets(t) for t in u2text]
     u1filtered = remove_stop(u1tokens)
     u2filtered = remove_stop(u2tokens)
-    return cos_sim(u1filtered, u2filtered)
+    stemmer = PorterStemmer()
+    stem1 = stem_words(u1filtered, stemmer)
+    stem2 = stem_words(u2filtered, stemmer)
+    return cos_sim(stem1, stem2)
 
 def tokenize_tweets(tweet):
     lowers = tweet.lower()
@@ -35,6 +39,13 @@ def remove_stop(token_list):
             if x not in wstop:
                 words_filtered.append(x)
     return words_filtered
+
+def stem_words(tokens, stemmer):
+    stemmed = []
+    for item in tokens:
+        stemmed.append(stemmer.stem(item))
+    return stemmed
+
 
 def cos_sim(words1, words2):
     wordcnt1 = Counter(words1)

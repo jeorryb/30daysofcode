@@ -9,7 +9,7 @@ from config import ACCESS_TOKEN, ACCESS_SECRET
 
 DEST_DIR = 'data'
 EXT = 'csv'
-NUM_TWEETS = 100
+NUM_TWEETS = 200
 
 Tweet = namedtuple('Tweet', 'id_str created_at text' )
 
